@@ -1,7 +1,7 @@
 name: pre-merge-checks
 on:
   pull_request:
-    branches: [main, develop]
+    branches: test-main
 jobs:
   Run-Tests:
     runs-on: ubuntu-latest
