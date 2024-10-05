@@ -14,10 +14,10 @@ jobs:
       - run: npm install
       - run: npm run register
       with:
-      secrets: |
-            DISCORD_TOKEN
-            DISCORD_APPLICATION_ID
-            DISCORD_GUILD_ID
+        secrets: |
+              DISCORD_TOKEN
+              DISCORD_APPLICATION_ID
+              DISCORD_GUILD_ID
         env:
           DISCORD_TOKEN: ${{secrets.DISCORD_TOKEN}}
           DISCORD_APPLICATION_ID: ${{secrets.DISCORD_APPLICATION_ID}}
