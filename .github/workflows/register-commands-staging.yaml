@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: staging
     steps:
-      - name: fail if required env var is missing
+      # - name: fail if required env var is missing
       - run: echo "Reached here"
 
   Register-Commands:
