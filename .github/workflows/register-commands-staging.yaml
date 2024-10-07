@@ -6,9 +6,8 @@ jobs:
   env-var-check:
     runs-on: ubuntu-latest
     environment: staging
-    if: "$ {{ !secrets.DISCORD_TOKEN }}"
     steps:
-      - run: echo "Requires env variables is missing!" && exit 1
+      - run: [[ -z "${secrets.DISCORD_TOKEN}" ]] && echo "Value is not assigned to a variable" || echo "Value is assigned to a variable"
   Register-Commands:
     needs: [env-var-check]
     runs-on: ubuntu-latest
