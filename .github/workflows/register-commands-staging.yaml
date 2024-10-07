@@ -4,14 +4,14 @@ on:
     branches: test-main
 jobs:
   # env-var-check:
-    runs-on: ubuntu-latest
-    environment: staging
-    steps:
-      - name: Fail if required env variable is missing
-        if: $ {{ !secrets.DISCORD_TOKEN }}
-        run: echo "Requires env variables is missing!" && exit 1
+    # runs-on: ubuntu-latest
+    # environment: staging
+    # steps:
+    #   - name: Fail if required env variable is missing
+    #     if: $ {{ !secrets.DISCORD_TOKEN }}
+    #     run: echo "Requires env variables is missing!" && exit 1
   Register-Commands:
-    needs: [env-var-check]
+    # needs: [env-var-check]
     runs-on: ubuntu-latest
     environment: staging
     steps:
