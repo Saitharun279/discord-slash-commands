@@ -8,7 +8,7 @@ jobs:
     environment: staging
     steps:
       - name: fail if required env var is missing
-          echo "Reached here"
+      - run: echo "Reached here"
 
   Register-Commands:
     needs: [env-var-check]
