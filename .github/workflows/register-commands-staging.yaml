@@ -6,7 +6,7 @@ jobs:
   env-var-check:
     runs-on: ubuntu-latest
     environment: staging
-    if: $ {{ !secrets.DISCORD_TOKEN }}
+    if: "$ {{ !secrets.DISCORD_TOKEN }}"
     steps:
       - run: echo "Requires env variables is missing!" && exit 1
   Register-Commands:
