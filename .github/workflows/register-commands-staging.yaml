@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: staging
     steps:
-       - name: Fail if required env variable is missing
+      - name: Fail if required env variable is missing
         if: $ {{!secrets.DISCORD_TOKEN}}
         run: echo "Requires env variables is missing!" && exit 1
   Register-Commands:
