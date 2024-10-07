@@ -12,7 +12,7 @@ jobs:
       #   env:
       #     DISCORD_TOKEN: ${{secrets.DISCORD_TOKEN}}
       - if: ${{ env.DISCORD_TOKEN == '' }}
-        run: echo "Reached here no DISCORD_TOKEN"
+        run: exit 1
 
   Register-Commands:
     needs: [env-var-check]
