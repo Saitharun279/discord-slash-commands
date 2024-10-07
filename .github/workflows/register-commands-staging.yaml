@@ -7,8 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     environment: staging
     steps:
+        env:
+          DISCORD_TOKEN: ${{secrets.DISCORD_TOKEN}}
       - run: echo "Reached here"
-      # - run: [[ -z "${secrets['DISCORD_TOKEN']}" ]] && echo "Value is not assigned to a variable" || echo "Value is assigned to a variable"
+      - run: [[ -z "${DISCORD_TOKEN}" ]] && echo "Value is not assigned to a variable" || echo "Value is assigned to a variable"
   Register-Commands:
     needs: [env-var-check]
     runs-on: ubuntu-latest
