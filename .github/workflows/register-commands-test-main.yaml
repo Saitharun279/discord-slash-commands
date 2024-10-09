@@ -1,0 +1,61 @@
+name: Register and deploy Slash Commands
+on:
+  push:
+    branches: test-main
+jobs:
+  env-var-check:
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      # - run: echo "Reached here"
+      # - run: [[ -z ${{DISCORD_TOKEN}} ]] && echo "Value is not assigned to a variable" || echo "Value is assigned to a variable"
+      #   env:
+      #     DISCORD_TOKEN: ${{secrets.DISCORD_TOKEN}}
+      - if: ${{ env.DISCORD_TOKEN == '' }}
+        run: exit 1
+
+  Register-Commands:
+    needs: [env-var-check]
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18.18.2
+      - run: npm install
+      - run: npm run register
+        env:
+          DISCORD_TOKEN: ${{secrets.DISCORD_TOKEN}}
+          DISCORD_APPLICATION_ID: ${{secrets.DISCORD_APPLICATION_ID}}
+          DISCORD_GUILD_ID: ${{secrets.DISCORD_GUILD_ID}}
+  Deploy-to-Cloudflare:
+    needs: [Register-Commands]
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - uses: actions/checkout@v2
+      - run: npm install
+      - uses: cloudflare/wrangler-action@2.0.0
+        with:
+          apiToken: ${{secrets.CLOUDFLARE_API_TOKEN}}
+          accountId: ${{secrets.CLOUDFLARE_ACCOUNT_ID}}
+          secrets: |
+            DISCORD_PUBLIC_KEY
+            DISCORD_TOKEN
+            DISCORD_GUILD_ID
+            CURRENT_ENVIRONMENT
+            BOT_PRIVATE_KEY
+            RDS_SERVERLESS_PUBLIC_KEY
+            CRON_JOBS_PUBLIC_KEY
+            IDENTITY_SERVICE_PUBLIC_KEY
+        env:
+          CURRENT_ENVIRONMENT: staging
+          CLOUDFLARE_API_TOKEN: ${{secrets.CLOUDFLARE_API_TOKEN}}
+          DISCORD_PUBLIC_KEY: ${{secrets.DISCORD_PUBLIC_KEY}}
+          DISCORD_TOKEN: ${{secrets.DISCORD_TOKEN}}
+          BOT_PRIVATE_KEY: ${{secrets.BOT_PRIVATE_KEY}}
+          DISCORD_GUILD_ID: ${{secrets.DISCORD_GUILD_ID}}
+          RDS_SERVERLESS_PUBLIC_KEY: ${{secrets.RDS_SERVERLESS_PUBLIC_KEY}}
+          CRON_JOBS_PUBLIC_KEY: ${{secrets.CRON_JOBS_PUBLIC_KEY}}
+          IDENTITY_SERVICE_PUBLIC_KEY: ${{secrets.IDENTITY_SERVICE_PUBLIC_KEY}}
