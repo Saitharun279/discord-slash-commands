@@ -7,6 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: staging
     steps:
+      - run: cd ..
       - run: ls 
       - run: pwd
       - run: cat /home/runner/work/discord-slash-commands/discord-slash-commands/env-var-check.txt
