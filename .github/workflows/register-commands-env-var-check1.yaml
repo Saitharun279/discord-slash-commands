@@ -16,7 +16,7 @@ jobs:
           else
             echo "DISCORD_PUBLIC_KEY is set"
           fi
-        run: echo $DISCORD_PUBLIC_KEY
+      - run: echo $DISCORD_PUBLIC_KEY
       # - uses: rubenesp87/env-var-validator-action@0.1.0
       #   with:
       #     filepath: 'env-var-check.txt'
