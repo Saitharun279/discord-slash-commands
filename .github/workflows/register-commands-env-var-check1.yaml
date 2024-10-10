@@ -3,28 +3,32 @@ on:
   push:
     branches: test-main
 jobs:
-  env-var-check1:
+  env-var-check2:
     runs-on: ubuntu-latest
     environment: staging
     steps:
-      # env:
-      #   CURRENT_ENVIRONMENT: staging
-      #   CLOUDFLARE_API_TOKEN: ${{secrets.CLOUDFLARE_API_TOKEN}}
-      #   DISCORD_PUBLIC_KEY: ${{secrets.DISCORD_PUBLIC_KEY}}
-      #   DISCORD_TOKEN: ${{secrets.DISCORD_TOKEN}}
-      #   BOT_PRIVATE_KEY: ${{secrets.BOT_PRIVATE_KEY}}
-      #   DISCORD_GUILD_ID: ${{secrets.DISCORD_GUILD_ID}}
-      #   RDS_SERVERLESS_PUBLIC_KEY: ${{secrets.RDS_SERVERLESS_PUBLIC_KEY}}
-      #   CRON_JOBS_PUBLIC_KEY: ${{secrets.CRON_JOBS_PUBLIC_KEY}}
-      #   IDENTITY_SERVICE_PUBLIC_KEY: ${{secrets.IDENTITY_SERVICE_PUBLIC_KEY}}
       - uses: actions/checkout@v2
-      # - name: env var check
-      # - run: echo "Reached here"
-      # - run: [[ -z ${{DISCORD_TOKEN}} ]] && echo "Value is not assigned to a variable" || echo "Value is assigned to a variable"
+      - name: Check if DISCORD_PUBLIC_KEY is set
+        run: |
+          if [[ -z "${{ secrets.DISCORD_PUBLIC_KEY }}" ]]; then
+            echo "DISCORD_PUBLIC_KEY is not set"
+            exit 1
+          else
+            echo "DISCORD_PUBLIC_KEY is set"
+          fi
+      # - uses: rubenesp87/env-var-validator-action@0.1.0
+      #   with:
+      #     filepath: 'env-var-check.txt'
       #   env:
-      #     DISCORD_TOKEN: ${{secrets.DISCORD_TOKEN}}
-      - run: [[ -z ${{secrets.DISCORD_PUBLIC_KEY}} == '' ]] && exit 1
-
+      #     CURRENT_ENVIRONMENT: staging
+      #     CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      #     DISCORD_PUBLIC_KEY: ${{ secrets.DISCORD_PUBLIC_KEY }}
+      #     DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
+      #     BOT_PRIVATE_KEY: ${{ secrets.BOT_PRIVATE_KEY }}
+      #     DISCORD_GUILD_ID: ${{ secrets.DISCORD_GUILD_ID }}
+      #     RDS_SERVERLESS_PUBLIC_KEY: ${{ secrets.RDS_SERVERLESS_PUBLIC_KEY }}
+      #     CRON_JOBS_PUBLIC_KEY: ${{ secrets.CRON_JOBS_PUBLIC_KEY }}
+      #     IDENTITY_SERVICE_PUBLIC_KEY: ${{ secrets.IDENTITY_SERVICE_PUBLIC_KEY }}
 
   Register-Commands:
     needs: [env-var-check1]
