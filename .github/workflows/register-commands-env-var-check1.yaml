@@ -18,7 +18,7 @@ jobs:
       #   CRON_JOBS_PUBLIC_KEY: ${{secrets.CRON_JOBS_PUBLIC_KEY}}
       #   IDENTITY_SERVICE_PUBLIC_KEY: ${{secrets.IDENTITY_SERVICE_PUBLIC_KEY}}
       - uses: actions/checkout@v2
-      - name: env var check
+      # - name: env var check
       # - run: echo "Reached here"
       # - run: [[ -z ${{DISCORD_TOKEN}} ]] && echo "Value is not assigned to a variable" || echo "Value is assigned to a variable"
       #   env:
