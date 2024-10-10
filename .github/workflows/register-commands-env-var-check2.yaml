@@ -9,7 +9,7 @@ jobs:
     steps:
       - run: ls -al
       - run: pwd
-      - run: cat /home/runner/work/discord-slash-commands/discord-slash-commands/.env-var-check
+      - run: cat .env-var-check
       - uses: rubenesp87/env-var-validator-action@0.1.0
         with:
           filepath: '/home/runner/work/discord-slash-commands/discord-slash-commands/.env-var-check'
