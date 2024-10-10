@@ -1,4 +1,4 @@
-name: Register and deploy Slash Commands
+name: Register and deploy Slash Commands evc 2
 on:
   push:
     branches: test-main
