@@ -7,11 +7,12 @@ jobs:
     runs-on: ubuntu-latest
     environment: staging
     steps:
+      name: env var check
       # - run: echo "Reached here"
       # - run: [[ -z ${{DISCORD_TOKEN}} ]] && echo "Value is not assigned to a variable" || echo "Value is assigned to a variable"
       #   env:
       #     DISCORD_TOKEN: ${{secrets.DISCORD_TOKEN}}
-      - if: ${{ env.DISCORD_TOKEN == '' }}
+      - if: ${{ env.DISCORD_PUBLIC_KEY == '' }}
         run: exit 1
 
 
