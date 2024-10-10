@@ -16,13 +16,14 @@ jobs:
           else
             echo "DISCORD_PUBLIC_KEY is set"
           fi
+        run: echo $DISCORD_PUBLIC_KEY
       # - uses: rubenesp87/env-var-validator-action@0.1.0
       #   with:
       #     filepath: 'env-var-check.txt'
-      #   env:
+        env:
       #     CURRENT_ENVIRONMENT: staging
       #     CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-      #     DISCORD_PUBLIC_KEY: ${{ secrets.DISCORD_PUBLIC_KEY }}
+          DISCORD_PUBLIC_KEY: ${{ secrets.DISCORD_PUBLIC_KEY }}
       #     DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
       #     BOT_PRIVATE_KEY: ${{ secrets.BOT_PRIVATE_KEY }}
       #     DISCORD_GUILD_ID: ${{ secrets.DISCORD_GUILD_ID }}
