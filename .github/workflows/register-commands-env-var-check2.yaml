@@ -8,6 +8,7 @@ jobs:
     environment: staging
     steps:
       - run: ls -al
+      - run: pwd
       - uses: rubenesp87/env-var-validator-action@0.1.0
         with:
           filepath: '.env-var-check'
