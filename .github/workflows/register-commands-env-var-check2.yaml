@@ -3,19 +3,17 @@ on:
   push:
     branches: test-main
 jobs:
-  env-var-check:
+  env-var-check2:
     runs-on: ubuntu-latest
     environment: staging
     steps:
-      # - run: echo "Reached here"
-      # - run: [[ -z ${{DISCORD_TOKEN}} ]] && echo "Value is not assigned to a variable" || echo "Value is assigned to a variable"
-      #   env:
-      #     DISCORD_TOKEN: ${{secrets.DISCORD_TOKEN}}
-      - if: ${{ env.DISCORD_TOKEN == '' }}
-        run: exit 1
+      - uses: rubenesp87/env-var-validator-action@0.1.0
+        with:
+          filepath: '.env-var-check'
+
 
   Register-Commands:
-    needs: [env-var-check]
+    needs: [env-var-check2]
     runs-on: ubuntu-latest
     environment: staging
     steps:
