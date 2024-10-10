@@ -11,7 +11,7 @@ jobs:
       - run: pwd
       - uses: rubenesp87/env-var-validator-action@0.1.0
         with:
-          filepath: '.env-var-check'
+          filepath: '/home/runner/work/discord-slash-commands/discord-slash-commands/.env-var-check'
 
 
   Register-Commands:
