@@ -7,9 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     environment: staging
     steps:
-      - run: ls -al
+      - run: ls 
       - run: pwd
-      - run: cat env-var-check.txt
+      - run: cat /home/runner/work/discord-slash-commands/discord-slash-commands/env-var-check.txt
       - uses: rubenesp87/env-var-validator-action@0.1.0
         with:
           filepath: '/home/runner/work/discord-slash-commands/discord-slash-commands/env-var-check.txt'
