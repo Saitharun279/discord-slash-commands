@@ -23,8 +23,7 @@ jobs:
       # - run: [[ -z ${{DISCORD_TOKEN}} ]] && echo "Value is not assigned to a variable" || echo "Value is assigned to a variable"
       #   env:
       #     DISCORD_TOKEN: ${{secrets.DISCORD_TOKEN}}
-      - if: [[ -z ${{secrets.DISCORD_PUBLIC_KEY}} == '' ]]
-        run: exit 1
+      - run: [[ -z ${{secrets.DISCORD_PUBLIC_KEY}} == '' ]] && exit 1
 
 
   Register-Commands:
