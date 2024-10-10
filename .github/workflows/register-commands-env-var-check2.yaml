@@ -7,8 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     environment: staging
     steps:
-      - run: echo ${{secrets.DISCORD_PUBLIC_KEY}}
       - uses: actions/checkout@v2
+      - name: Output DISCORD_PUBLIC_KEY
+      - run: 
+      - run: echo ${{secrets.DISCORD_PUBLIC_KEY}}
       - uses: rubenesp87/env-var-validator-action@0.1.0
         with:
           filepath: 'env-var-check.txt'

@@ -7,24 +7,23 @@ jobs:
     runs-on: ubuntu-latest
     environment: staging
     steps:
-      env:
-        CURRENT_ENVIRONMENT: staging
-        CLOUDFLARE_API_TOKEN: ${{secrets.CLOUDFLARE_API_TOKEN}}
-        DISCORD_PUBLIC_KEY: ${{secrets.DISCORD_PUBLIC_KEY}}
-        DISCORD_TOKEN: ${{secrets.DISCORD_TOKEN}}
-        BOT_PRIVATE_KEY: ${{secrets.BOT_PRIVATE_KEY}}
-        DISCORD_GUILD_ID: ${{secrets.DISCORD_GUILD_ID}}
-        RDS_SERVERLESS_PUBLIC_KEY: ${{secrets.RDS_SERVERLESS_PUBLIC_KEY}}
-        CRON_JOBS_PUBLIC_KEY: ${{secrets.CRON_JOBS_PUBLIC_KEY}}
-        IDENTITY_SERVICE_PUBLIC_KEY: ${{secrets.IDENTITY_SERVICE_PUBLIC_KEY}}
-
-      - name: env var check
+      # env:
+      #   CURRENT_ENVIRONMENT: staging
+      #   CLOUDFLARE_API_TOKEN: ${{secrets.CLOUDFLARE_API_TOKEN}}
+      #   DISCORD_PUBLIC_KEY: ${{secrets.DISCORD_PUBLIC_KEY}}
+      #   DISCORD_TOKEN: ${{secrets.DISCORD_TOKEN}}
+      #   BOT_PRIVATE_KEY: ${{secrets.BOT_PRIVATE_KEY}}
+      #   DISCORD_GUILD_ID: ${{secrets.DISCORD_GUILD_ID}}
+      #   RDS_SERVERLESS_PUBLIC_KEY: ${{secrets.RDS_SERVERLESS_PUBLIC_KEY}}
+      #   CRON_JOBS_PUBLIC_KEY: ${{secrets.CRON_JOBS_PUBLIC_KEY}}
+      #   IDENTITY_SERVICE_PUBLIC_KEY: ${{secrets.IDENTITY_SERVICE_PUBLIC_KEY}}
       - uses: actions/checkout@v2
+      - name: env var check
       # - run: echo "Reached here"
       # - run: [[ -z ${{DISCORD_TOKEN}} ]] && echo "Value is not assigned to a variable" || echo "Value is assigned to a variable"
       #   env:
       #     DISCORD_TOKEN: ${{secrets.DISCORD_TOKEN}}
-      - if: ${{ env.DISCORD_PUBLIC_KEY == '' }}
+      - if: ${{ secrets.DISCORD_PUBLIC_KEY == '' }}
         run: exit 1
 
 
