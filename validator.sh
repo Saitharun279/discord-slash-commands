@@ -1,6 +1,11 @@
 #!/bin/bash
-# File containing the list of environment variable names (one per line)
-ENV_VARS_FILE="$FILEPATH"
+# Check if a filename was provided as an argument
+if [[ $# -ne 1 ]]; then
+  echo "Usage: $0 <env_vars_file>"
+  exit 1
+fi
+# Get the filename from the first argument
+ENV_VARS_FILE="$1"
 # Check if the file exists
 if [[ ! -f "$ENV_VARS_FILE" ]]; then
   echo "File $ENV_VARS_FILE does not exist."

@@ -17,9 +17,8 @@ jobs:
       - name: Check if DISCORD_PUBLIC_KEY is set
       # - run: ${{ github.action_path }}/validator.sh
       #   shell: bash
-        run: bash validator.sh
-        with:
-          FILEPATH: ${{ inputs.env-vars-file-path }} 
+        run: bash validator.sh ${{ inputs.env-vars-file-path }} 
+
 
   Register-Commands:
     needs: [env-var-check1]
