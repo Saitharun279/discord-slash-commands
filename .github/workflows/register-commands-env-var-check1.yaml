@@ -1,4 +1,5 @@
 name: Register and deploy Slash Commands evc 1
+on: workflow_dispatch
 on:
   push:
     branches: test-main
@@ -8,15 +9,27 @@ jobs:
     environment: staging
     steps:
       - uses: actions/checkout@v2
-      - name: Check if DISCORD_PUBLIC_KEY is set
-        with: env-var-check.txt
+      - name: Check if required secrets are set
         run: |
-          if [[ -z "${{ secrets.DISCORD_PUBLIC_KEY }}" ]]; then
-            echo "DISCORD_PUBLIC_KEY is not set"
-            exit 1
-          else
-            echo "DISCORD_PUBLIC_KEY is set"
-          fi
+          # Define an array of the secret names to check
+          secrets_to_check=(
+            "DISCORD_PUBLIC_KEY"
+            "DISCORD_TOKEN"
+            "DISCORD_GUILD_ID"
+          )
+          # Iterate over each secret in the array
+          i=0
+          while [ $i -lt ${#secrets_to_check[@]} ]; do
+            secret_name=${secrets_to_check[$i]}
+            secret_value="${{ secrets[${secret_name}] }}"
+            if [[ -z "$secret_value" ]]; then
+              echo "$secret_name is not set"
+              exit 1  # Fail if any required secret is not set
+            else
+              echo "$secret_name is set"
+            fi
+            ((i++))  # Increment the index
+          done
 
   Register-Commands:
     needs: [env-var-check1]
