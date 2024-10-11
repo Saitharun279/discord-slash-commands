@@ -1,6 +1,5 @@
 name: Register and deploy Slash Commands evc 1
 on:
-  workflow_dispatch:
   push:
     branches: test-main
 jobs:
@@ -9,27 +8,27 @@ jobs:
     environment: staging
     steps:
       - uses: actions/checkout@v2
-      - name: Check if required secrets are set
+      - name: Check if DISCORD_PUBLIC_KEY is set
         run: |
-          # Define an array of the secret names to check
-          secrets_to_check=(
-            "DISCORD_PUBLIC_KEY"
-            "DISCORD_TOKEN"
-            "DISCORD_GUILD_ID"
-          )
-          # Iterate over each secret in the array
-          i=0
-          while [ $i -lt ${#secrets_to_check[@]} ]; do
-            secret_name=${secrets_to_check[$i]}
-            secret_value="${{ secrets[${secret_name}] }}"
-            if [[ -z "$secret_value" ]]; then
-              echo "$secret_name is not set"
-              exit 1  # Fail if any required secret is not set
-            else
-              echo "$secret_name is set"
-            fi
-            ((i++))  # Increment the index
-          done
+          if [[ -z "${{ DISCORD_PUBLIC_KEY }}" ]]; then
+            echo "DISCORD_PUBLIC_KEY is not set"
+            exit 1
+          else
+            echo "DISCORD_PUBLIC_KEY is set"
+          fi
+      # - uses: rubenesp87/env-var-validator-action@0.1.0
+      #   with:
+      #     filepath: 'env-var-check.txt'
+        env:
+      #     CURRENT_ENVIRONMENT: staging
+      #     CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          DISCORD_PUBLIC_KEY: ${{ secrets.DISCORD_PUBLIC_KEY }}
+      #     DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
+      #     BOT_PRIVATE_KEY: ${{ secrets.BOT_PRIVATE_KEY }}
+      #     DISCORD_GUILD_ID: ${{ secrets.DISCORD_GUILD_ID }}
+      #     RDS_SERVERLESS_PUBLIC_KEY: ${{ secrets.RDS_SERVERLESS_PUBLIC_KEY }}
+      #     CRON_JOBS_PUBLIC_KEY: ${{ secrets.CRON_JOBS_PUBLIC_KEY }}
+      #     IDENTITY_SERVICE_PUBLIC_KEY: ${{ secrets.IDENTITY_SERVICE_PUBLIC_KEY }}
 
   Register-Commands:
     needs: [env-var-check1]
