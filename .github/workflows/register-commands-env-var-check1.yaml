@@ -2,7 +2,7 @@ name: Register and deploy Slash Commands evc 1
 on:
   push:
     branches: test-main
-  workflow_dispatch
+  workflow_dispatch:
 jobs:
   env-var-check1:
     runs-on: ubuntu-latest
