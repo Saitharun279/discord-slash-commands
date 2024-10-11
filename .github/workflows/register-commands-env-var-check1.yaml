@@ -10,7 +10,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Check if DISCORD_PUBLIC_KEY is set
         run: |
-          if [[ -z "${{ DISCORD_PUBLIC_KEY }}" ]]; then
+          if [[ -z "${DISCORD_PUBLIC_KEY}" ]]; then
             echo "DISCORD_PUBLIC_KEY is not set"
             exit 1
           else
