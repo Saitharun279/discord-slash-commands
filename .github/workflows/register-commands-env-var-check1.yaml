@@ -9,8 +9,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Check if DISCORD_PUBLIC_KEY is set
-      - run: ${{ github.action_path }}/validator.sh
-        shell: bash
+      # - run: ${{ github.action_path }}/validator.sh
+      #   shell: bash
+        run: ${{ github.action_path }}/validator.sh
 
   Register-Commands:
     needs: [env-var-check1]
