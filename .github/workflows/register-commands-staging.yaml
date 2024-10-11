@@ -1,21 +1,26 @@
-name: Register and deploy Slash Commands
+name: Register and deploy Slash Commands evc 1
 on:
   push:
     branches: test-main
 jobs:
-  env-var-check:
+  env-var-check1:
     runs-on: ubuntu-latest
     environment: staging
     steps:
-      # - run: echo "Reached here"
-      # - run: [[ -z ${{DISCORD_TOKEN}} ]] && echo "Value is not assigned to a variable" || echo "Value is assigned to a variable"
-      #   env:
-      #     DISCORD_TOKEN: ${{secrets.DISCORD_TOKEN}}
-      - if: ${{ env.DISCORD_TOKEN == '' }}
-        run: exit 1
-
+      - uses: actions/checkout@v2
+      - name: Check if DISCORD_PUBLIC_KEY is set
+        run: |
+          if [[ -z "${{ secrets.DISCORD_PUBLIC_KEY }}" ]]; then
+            echo "DISCORD_PUBLIC_KEY is not set"
+            exit 1
+          else
+            echo "DISCORD_PUBLIC_KEY is set"
+          fi
+        env:
+          DISCORD_PUBLIC_KEY: ${{ secrets.DISCORD_PUBLIC_KEY }}
+          
   Register-Commands:
-    needs: [env-var-check]
+    needs: [env-var-check1]
     runs-on: ubuntu-latest
     environment: staging
     steps:
