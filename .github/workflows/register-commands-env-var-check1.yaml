@@ -8,14 +8,11 @@ jobs:
     environment: staging
     steps:
       - uses: actions/checkout@v2
-      - name: Check if DISCORD_PUBLIC_KEY is set
-        run: |
-          if [[ -z "${{ secrets.DISCORD_PUBLIC_KEY }}" ]]; then
-            echo "DISCORD_PUBLIC_KEY is not set"
-            exit 1
-          else
-            echo "DISCORD_PUBLIC_KEY is set"
-          fi
+      - name: Check if env var are set
+      # - run: ${{ github.action_path }}/validator.sh
+      #   shell: bash
+        run: bash validator.sh 
+
 
   Register-Commands:
     needs: [env-var-check1]
