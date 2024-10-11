@@ -9,26 +9,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Check if DISCORD_PUBLIC_KEY is set
-        run: |
-          if [[ -z "${DISCORD_PUBLIC_KEY}" ]]; then
-            echo "DISCORD_PUBLIC_KEY is not set"
-            exit 1
-          else
-            echo "DISCORD_PUBLIC_KEY is set"
-          fi
-      # - uses: rubenesp87/env-var-validator-action@0.1.0
-      #   with:
-      #     filepath: 'env-var-check.txt'
-        env:
-      #     CURRENT_ENVIRONMENT: staging
-      #     CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          DISCORD_PUBLIC_KEY: ${{ secrets.DISCORD_PUBLIC_KEY }}
-      #     DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
-      #     BOT_PRIVATE_KEY: ${{ secrets.BOT_PRIVATE_KEY }}
-      #     DISCORD_GUILD_ID: ${{ secrets.DISCORD_GUILD_ID }}
-      #     RDS_SERVERLESS_PUBLIC_KEY: ${{ secrets.RDS_SERVERLESS_PUBLIC_KEY }}
-      #     CRON_JOBS_PUBLIC_KEY: ${{ secrets.CRON_JOBS_PUBLIC_KEY }}
-      #     IDENTITY_SERVICE_PUBLIC_KEY: ${{ secrets.IDENTITY_SERVICE_PUBLIC_KEY }}
+      - run: ${{ github.action_path }}/validator.sh
+        shell: bash
 
   Register-Commands:
     needs: [env-var-check1]
