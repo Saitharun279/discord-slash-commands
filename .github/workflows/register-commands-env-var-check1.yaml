@@ -8,7 +8,7 @@ jobs:
     environment: staging
     steps:
       - uses: actions/checkout@v2
-      - name: Check if DISCORD_PUBLIC_KEY is set
+      - name: Check if env var are set
       # - run: ${{ github.action_path }}/validator.sh
       #   shell: bash
         run: bash validator.sh 
