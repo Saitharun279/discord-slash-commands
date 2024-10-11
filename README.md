@@ -66,3 +66,4 @@ To add more commands you need to modify following files:
 - src/register.ts (import the newly added command here and assign it to the commands array)
 - now run `npm run register`
 ```
+ 
