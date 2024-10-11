@@ -2,7 +2,7 @@ name: Register and deploy Slash Commands evc 1
 on:
   workflow_dispatch:
     inputs:
-      Environment variables file name:
+      env-vars-file-path:
         description: 'Environment variables file name'
         required: false
         default: "env-vars.txt"
@@ -19,7 +19,7 @@ jobs:
       #   shell: bash
         run: bash validator.sh
         with:
-          FILEPATH: "env-vars.txt" 
+          FILEPATH: ${{ inputs.env-vars-file-path }} 
 
   Register-Commands:
     needs: [env-var-check1]
