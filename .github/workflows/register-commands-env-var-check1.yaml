@@ -8,7 +8,7 @@ jobs:
     environment: staging
     steps:
       - uses: actions/checkout@v2
-      - name: Check if DISCORD_PUBLIC_KEY is set
+      # - name: Check if DISCORD_PUBLIC_KEY is set
       - run: bash validator.sh
         env:
           DISCORD_APPLICATION_ID: ${{secrets.DISCORD_APPLICATION_ID}}
