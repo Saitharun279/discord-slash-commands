@@ -9,8 +9,7 @@ fi
 # Read the file and iterate through each variable name
 while IFS= read -r var_name; do
   # Check if the variable is set in the environment
-  var = secrets."{{ $var_name }}"
-  if [[ -z "${{  }}" ]]; then
+  if [[ -z "${var_name}" ]]; then
     echo "Environment variable $var_name is not set."
     exit 1  # Exit with error if any variable is not set
   else
