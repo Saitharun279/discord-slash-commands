@@ -13,7 +13,7 @@ jobs:
       #   shell: bash
         run: bash validator.sh
         with:
-          FILEPATH: ${{ "env-vars.txt" }} 
+          FILEPATH: "env-vars.txt" 
 
   Register-Commands:
     needs: [env-var-check1]
