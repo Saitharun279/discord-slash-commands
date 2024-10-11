@@ -1,11 +1,5 @@
 name: Register and deploy Slash Commands evc 1
 on:
-  workflow_dispatch:
-    inputs:
-      env-vars-file-path:
-        description: 'Environment variables file name'
-        required: false
-        default: "env-vars.txt"
   push:
     branches: test-main
 jobs:
