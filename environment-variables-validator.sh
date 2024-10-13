@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ENV_VARS_FILE="env-vars.txt"
+ENV_VARS_FILE="environment-variables.txt"
 # Check if the file exists
 if [[ ! -f "$ENV_VARS_FILE" ]]; then
   echo "File $ENV_VARS_FILE does not exist."
