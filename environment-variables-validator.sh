@@ -1,5 +1,7 @@
 #!/bin/bash
 
+printenv
+
 ENV_VARS_FILE="environment-variables.txt"
 # Check if the file exists
 if [[ ! -f "$ENV_VARS_FILE" ]]; then
