@@ -15,4 +15,4 @@ for var_name in $ENV_VAR_NAMES; do
     exit 1  # Exit with error if any variable is not set
   fi
 done
-echo "All Environment variables: \n $ENV_VAR_NAMES \n are set."
+echo "All Environment variables are set."
