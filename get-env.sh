@@ -5,3 +5,4 @@ echo "env_var_names=$ENV_VAR_NAMES" >> $GITHUB_ENV
 for var_name in ${{ env.env_var_names }}; do
 # Use eval to dynamically inject secret
 echo $var_name
+done
