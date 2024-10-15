@@ -19,17 +19,17 @@ jobs:
           for var_name in ${{ env.env_var_names }}; do
             # Use eval to dynamically inject secret
             echo $var_name
-          #   secret_value=$(eval echo "\${{ secrets.$var_name }}")
-          #   if [ -z "$secret_value" ]; then
-          #     echo "Warning: Secret $var_name is not set or is empty."
-          #   else
-          #     echo "Injecting secret for $var_name"
-          #     echo "$var_name=$secret_value" >> $GITHUB_ENV
-          #   fi
-          # done
-          # echo "The value of MY_SECRET1 is: $DISCORD_APPLICATION_ID"
-          # echo "The value of MY_SECRET2 is: $DISCORD_GUILD_ID"
-          # echo "The value of MY_SECRET3 is: $DISCORD_TOKEN"
+        #   secret_value=$(eval echo "\${{ secrets.$var_name }}")
+        #   if [ -z "$secret_value" ]; then
+        #     echo "Warning: Secret $var_name is not set or is empty."
+        #   else
+        #     echo "Injecting secret for $var_name"
+        #     echo "$var_name=$secret_value" >> $GITHUB_ENV
+        #   fi
+        # done
+        # echo "The value of MY_SECRET1 is: $DISCORD_APPLICATION_ID"
+        # echo "The value of MY_SECRET2 is: $DISCORD_GUILD_ID"
+        # echo "The value of MY_SECRET3 is: $DISCORD_TOKEN"
         # env:
         #   DISCORD_APPLICATION_ID: ${{secrets.DISCORD_APPLICATION_ID}}
         #   DISCORD_GUILD_ID: ${{secrets.DISCORD_GUILD_ID}}
