@@ -16,4 +16,4 @@ for var_name in $ENV_VAR_NAMES; do
   else
     echo "Environment variable $var_name is set."
   fi
-done < "$ENV_VARS_FILE"
+# done < "$ENV_VARS_FILE"
