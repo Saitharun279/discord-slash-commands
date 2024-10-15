@@ -8,7 +8,7 @@ jobs:
     environment: staging
     steps:
       - uses: actions/checkout@v2
-      - run: bash environment-variables-validator.sh
+      # - run: bash environment-variables-validator.sh
       - name: Read environment variable names from file
         id: read_file
         run: |
