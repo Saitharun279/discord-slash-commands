@@ -11,7 +11,7 @@ jobs:
       # - run: bash environment-variables-validator.sh
       # - name: Read environment variable names from file
         # id: read_file
-        run: |
+      - run: |
           # Read file and store each variable name in a space-separated string
           ENV_VAR_NAMES=$(cat environment-variables.txt | tr '\n' ' ')
           echo "env_var_names=$ENV_VAR_NAMES" >> $GITHUB_ENV
@@ -26,8 +26,6 @@ jobs:
               echo "$var_name=$secret_value" >> $GITHUB_ENV
             fi
           done
-      - name: Verify injected secrets
-        run: |
           echo "The value of MY_SECRET1 is: $DISCORD_APPLICATION_ID"
           echo "The value of MY_SECRET2 is: $DISCORD_GUILD_ID"
           echo "The value of MY_SECRET3 is: $DISCORD_TOKEN"
