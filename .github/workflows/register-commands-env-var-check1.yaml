@@ -9,8 +9,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       # - run: bash environment-variables-validator.sh
-      - name: Read environment variable names from file
-        id: read_file
+      # - name: Read environment variable names from file
+        # id: read_file
         run: |
           # Read file and store each variable name in a space-separated string
           ENV_VAR_NAMES=$(cat environment-variables.txt | tr '\n' ' ')
