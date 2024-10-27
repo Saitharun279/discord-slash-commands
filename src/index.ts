@@ -107,6 +107,8 @@ export default {
         return new JSONResponse(response.BAD_SIGNATURE, { status: 401 });
       }
     }
+    console.log("Hi");
+    console.log(env);
     return router.handle(request, env, ctx);
   },
 
