@@ -108,7 +108,7 @@ export default {
       }
     }
     console.log("Hi");
-    console.log(env.DISCORD_APPLICATION_ID);
+    console.log(env.DISCORD_GUILD_ID);
     return router.handle(request, env, ctx);
   },
 
