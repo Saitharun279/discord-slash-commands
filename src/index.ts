@@ -109,6 +109,7 @@ export default {
     }
     console.log("Hi");
     console.log("env: "+env.CLOUDFLARE_ACCOUNT_ID);
+    console.log(env.CLOUDFLARE_ACCOUNT_ID===null)
     return router.handle(request, env, ctx);
   },
 
