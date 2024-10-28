@@ -108,8 +108,8 @@ export default {
       }
     }
     console.log("Hi1");
-    console.log("env1: "+env.CLOUDFLARE_ACCOUNT_ID);
-    console.log("env11:" + env.CLOUDFLARE_ACCOUNT_ID===null);
+    console.log("env1: "+env.TEST_ENV_VAR);
+    console.log("env11:" + env.TEST_ENV_VAR===null);
     return router.handle(request, env, ctx);
   },
 
