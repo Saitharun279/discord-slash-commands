@@ -109,7 +109,8 @@ export default {
     }
     console.log("Hi1");
     console.log("env1: "+env.TEST_ENV_VAR);
-    console.log("env11:");// + (env.TEST_ENV_VAR===null));
+    console.log("env11:");
+    console.log(env.TEST_ENV_VAR === null);
     console.log("env12: "+env.DISCORD_GUILD_ID);
     return router.handle(request, env, ctx);
   },
