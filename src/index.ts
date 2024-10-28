@@ -107,9 +107,9 @@ export default {
         return new JSONResponse(response.BAD_SIGNATURE, { status: 401 });
       }
     }
-    console.log("Hi");
-    console.log("env: "+env.CLOUDFLARE_ACCOUNT_ID);
-    console.log(env.CLOUDFLARE_ACCOUNT_ID===null)
+    console.log("Hi1");
+    console.log("env1: "+env.CLOUDFLARE_ACCOUNT_ID);
+    console.log("env11:" + env.CLOUDFLARE_ACCOUNT_ID===null);
     return router.handle(request, env, ctx);
   },
 
