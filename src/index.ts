@@ -108,7 +108,7 @@ export default {
       }
     }
     console.log("Hi");
-    console.log(env.DISCORD_GUILD_ID);
+    console.log(env.CLOUDFLARE_ACCOUNT_ID);
     return router.handle(request, env, ctx);
   },
 
