@@ -21,7 +21,7 @@ jobs:
           CRON_JOBS_PUBLIC_KEY: ${{secrets.CRON_JOBS_PUBLIC_KEY}}
           IDENTITY_SERVICE_PUBLIC_KEY: ${{secrets.IDENTITY_SERVICE_PUBLIC_KEY}}
           TEST_ENV_VAR1: ${{secrets.TEST_ENV_VAR1}}
-jobs:
+
   Register-Commands:
     runs-on: ubuntu-latest
     environment: staging
