@@ -7,7 +7,6 @@ export const DISCORD_PROFILE_SERVICE_DEVELOPMENT_HELP_GROUP =
   "1209237447083303014"; //Change this for your local environment
 
 export const envKeys = [
-  "CURRENT_ENVIRONMENT",
   "DISCORD_APPLICATION_ID",
   "DISCORD_GUILD_ID",
   "DISCORD_TOKEN",
