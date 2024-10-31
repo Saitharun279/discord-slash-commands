@@ -1,5 +1,8 @@
 import { envKeys } from "../src/constants/variables";
+import { config } from "dotenv";
 
+
+config();
 validateEnv();
 
 export default function validateEnv() {
