@@ -13,6 +13,21 @@ export interface env {
   TEST_ENV_VAR: string;
 }
 
+const envKeys = [
+  "CURRENT_ENVIRONMENT",
+  "DISCORD_APPLICATION_ID",
+  "DISCORD_GUILD_ID",
+  "DISCORD_TOKEN",
+  "DISCORD_PUBLIC_KEY",
+  "CLOUDFLARE_API_TOKEN",
+  "CLOUDFLARE_ACCOUNT_ID",
+  "BOT_PRIVATE_KEY",
+  "RDS_SERVERLESS_PUBLIC_KEY",
+  "CRON_JOBS_PUBLIC_KEY",
+  "IDENTITY_SERVICE_PUBLIC_KEY",
+  "TEST_ENV_VAR",
+] as const;
+
 export interface environment {
   [key: string]: variables;
 }
