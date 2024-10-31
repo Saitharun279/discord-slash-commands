@@ -23,6 +23,7 @@ jobs:
           TEST_ENV_VAR1: ${{secrets.TEST_ENV_VAR1}}
 
   Register-Commands:
+    needs: [Environment-Variables-Check]
     runs-on: ubuntu-latest
     environment: staging
     steps:
