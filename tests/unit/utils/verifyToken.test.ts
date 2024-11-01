@@ -7,10 +7,10 @@ import {
   AUTHENTICATION_ERROR,
   INVALID_TOKEN_FORMAT,
 } from "../../../src/constants/responses";
+import { mockEnv } from "../mockEnv";
 
 describe("verifyNodejsBackendAuthToken", () => {
   const authToken = "validToken";
-  const mockEnv = { RDS_SERVERLESS_PUBLIC_KEY: "publicKey" };
 
   afterEach(() => {
     jest.clearAllMocks();
@@ -53,7 +53,6 @@ describe("verifyNodejsBackendAuthToken", () => {
 
 describe("verifyCronJobsToken", () => {
   const authToken = "validToken";
-  const mockEnv = { CRON_JOBS_PUBLIC_KEY: "publicKey" };
 
   afterEach(() => {
     jest.clearAllMocks();

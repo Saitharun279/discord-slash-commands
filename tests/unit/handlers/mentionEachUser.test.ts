@@ -6,25 +6,16 @@ import {
   transformedArgument,
   ctx,
 } from "../../fixtures/fixture";
+import { mockEnv } from "../mockEnv";
 
 describe("Test mention each function", () => {
   it("Should be an instance of JSONResponse", () => {
-    const env = {
-      BOT_PUBLIC_KEY: "xyz",
-      DISCORD_GUILD_ID: "123",
-      DISCORD_TOKEN: "abc",
-    };
 
-    const response = mentionEachUser(transformedArgument, env, ctx);
+    const response = mentionEachUser(transformedArgument, mockEnv, ctx);
     expect(response).toBeInstanceOf(Promise);
   });
 
   it("should run without displayMessageObj argument in dev mode", async () => {
-    const env = {
-      BOT_PUBLIC_KEY: "xyz",
-      DISCORD_GUILD_ID: "123",
-      DISCORD_TOKEN: "abc",
-    };
     const response = mentionEachUser(
       {
         ...onlyRoleToBeTagged,
@@ -34,7 +25,7 @@ describe("Test mention each function", () => {
           value: true,
         },
       },
-      env,
+      mockEnv,
       ctx
     );
     expect(response).toBeInstanceOf(Promise);
@@ -47,13 +38,8 @@ describe("Test mention each function", () => {
   });
 
   it("should run without displayMessageObj argument", async () => {
-    const env = {
-      BOT_PUBLIC_KEY: "xyz",
-      DISCORD_GUILD_ID: "123",
-      DISCORD_TOKEN: "abc",
-    };
 
-    const response = mentionEachUser(onlyRoleToBeTagged, env, ctx);
+    const response = mentionEachUser(onlyRoleToBeTagged, mockEnv, ctx);
     expect(response).toBeInstanceOf(Promise);
     const textMessage: { data: { content: string } } = await response.then(
       (res) => res.json()
