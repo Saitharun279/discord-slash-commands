@@ -2,7 +2,7 @@ name: pre-merge-checks tests
 on:
   push:
     branches: 
-      test/issue#257
+      test/issue#25
 jobs:
   Run-Tests:
     runs-on: ubuntu-latest

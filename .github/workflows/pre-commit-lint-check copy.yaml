@@ -2,7 +2,7 @@ name: pre-merge-checks lint
 on:
   push:
     branches: 
-      test/issue#257
+      test/issue#25
 jobs:
   Lint-Check:
     runs-on: ubuntu-latest
