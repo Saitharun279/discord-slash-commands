@@ -4,13 +4,9 @@ import {
   generateStringToBeSent,
   sendProfileServiceBlockedMessage,
 } from "../../../src/utils/sendProfileServiceBlockedMessage";
+import { mockEnv } from "../mockEnv";
 
 describe("Send Profile Service Blocked Message", () => {
-  const mockEnv = {
-    BOT_PUBLIC_KEY: "xyz",
-    DISCORD_GUILD_ID: "123",
-    DISCORD_TOKEN: "abc",
-  };
 
   const mockData = {
     discordId: "12345678910111213",
