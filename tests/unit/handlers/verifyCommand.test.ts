@@ -7,9 +7,9 @@ import config from "../../../config/config";
 import {
   UNIQUE_TOKEN,
   discordUserData,
-  env,
   mockDateNow,
 } from "../../fixtures/fixture";
+import { mockEnv } from "../mockEnv";
 
 describe("verifyCommand", () => {
   beforeEach(() => {
@@ -41,7 +41,7 @@ describe("verifyCommand", () => {
       "userName",
       "discriminator",
       "2021-07-25T19:25:16.172000+00:00",
-      env
+      mockEnv
     );
 
     expect(global.fetch).toHaveBeenCalledWith(
@@ -50,7 +50,7 @@ describe("verifyCommand", () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${env.DISCORD_TOKEN}`,
+          Authorization: `Bearer ${mockEnv.DISCORD_TOKEN}`,
         },
         body: JSON.stringify(discordUserData),
       }
@@ -58,7 +58,7 @@ describe("verifyCommand", () => {
     const resultText = await result.text();
     const resultData = JSON.parse(resultText);
 
-    const verificationSiteURL = config(env).VERIFICATION_SITE_URL;
+    const verificationSiteURL = config(mockEnv).VERIFICATION_SITE_URL;
     const message = `${VERIFICATION_STRING}\n${verificationSiteURL}/discord?token=${UNIQUE_TOKEN}\n${VERIFICATION_SUBSTRING}`;
     expect(resultData.data.content).toEqual(message);
   });
@@ -79,7 +79,7 @@ describe("verifyCommand", () => {
       "test user",
       "sndbhsbgdj",
       "2021-07-25T19:25:16.172000+00:00",
-      env
+      mockEnv
     );
 
     expect(global.fetch).toHaveBeenCalledWith(
@@ -88,7 +88,7 @@ describe("verifyCommand", () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${env.DISCORD_TOKEN}`,
+          Authorization: `Bearer ${mockEnv.DISCORD_TOKEN}`,
         },
         body: JSON.stringify(discordUserData),
       }
