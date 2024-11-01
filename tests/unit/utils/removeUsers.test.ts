@@ -1,13 +1,9 @@
 import { DISCORD_BASE_URL } from "../../../src/constants/urls";
 import JSONResponse from "../../../src/utils/JsonResponse";
 import { removeUsers } from "../../../src/utils/removeUsers";
+import { mockEnv } from "../mockEnv";
 
 describe("removeUsers", () => {
-  const mockEnv = {
-    BOT_PUBLIC_KEY: "xyz",
-    DISCORD_GUILD_ID: "123",
-    DISCORD_TOKEN: "abc",
-  };
 
   beforeEach(() => {
     jest.clearAllMocks();
