@@ -5,13 +5,9 @@ import {
 import { DISCORD_BASE_URL } from "../../../src/constants/urls";
 import JSONResponse from "../../../src/utils/JsonResponse";
 import { updateNickName } from "../../../src/utils/updateNickname";
+import { mockEnv } from "../mockEnv";
 
 describe("Update nickname", () => {
-  const mockEnv = {
-    BOT_PUBLIC_KEY: "xyz",
-    DISCORD_GUILD_ID: "123",
-    DISCORD_TOKEN: "abc",
-  };
 
   const mockData = { discordId: "12345678910111213", nickname: "jhon" };
   it("should pass the reason to discord as a X-Audit-Log-Reason header if provided", async () => {
