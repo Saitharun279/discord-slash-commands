@@ -1,5 +1,4 @@
 import config from "../../../config/config";
-import { environment } from "../../fixtures/config";
 import {
   RDS_BASE_API_URL,
   RDS_BASE_DEVELOPMENT_API_URL,
@@ -19,7 +18,7 @@ describe("Test config function", () => {
   });
 
   it("Should return default config environment", () => {
-    expect(config(mockEnv]).RDS_BASE_API_URL).toBe(
+    expect(config(mockEnv).RDS_BASE_API_URL).toBe(
       RDS_BASE_DEVELOPMENT_API_URL
     );
   });
