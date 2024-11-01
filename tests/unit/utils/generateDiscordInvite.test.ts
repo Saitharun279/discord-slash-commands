@@ -2,7 +2,8 @@ import { INVITE_OPTIONS } from "../../../src/constants/inviteOptions";
 import * as response from "../../../src/constants/responses";
 import JSONResponse from "../../../src/utils/JsonResponse";
 import { generateDiscordLink } from "../../../src/utils/generateDiscordInvite";
-import { dummyInviteBody, guildEnv } from "../../fixtures/fixture";
+import { dummyInviteBody } from "../../fixtures/fixture";
+import { mockEnv } from "../mockEnv";
 
 describe("generate invite link", () => {
   it("should pass the reason to discord as a X-Audit-Log-Reason header if provided", async () => {
@@ -10,9 +11,9 @@ describe("generate invite link", () => {
       .spyOn(global, "fetch")
       .mockImplementation(() => Promise.resolve(new JSONResponse({})));
 
-    await generateDiscordLink(dummyInviteBody, guildEnv);
+    await generateDiscordLink(dummyInviteBody, mockEnv);
 
-    await generateDiscordLink(dummyInviteBody, guildEnv, "This is a reason");
+    await generateDiscordLink(dummyInviteBody, mockEnv, "This is a reason");
 
     expect(global.fetch).toHaveBeenCalledWith(
       `https://discord.com/api/v10/channels/${dummyInviteBody.channelId}/invites`,
@@ -20,7 +21,7 @@ describe("generate invite link", () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bot ${guildEnv.DISCORD_TOKEN}`,
+          Authorization: `Bot ${mockEnv.DISCORD_TOKEN}`,
           "X-Audit-Log-Reason": "This is a reason",
         },
         body: JSON.stringify({
@@ -36,7 +37,7 @@ describe("generate invite link", () => {
       .spyOn(global, "fetch")
       .mockImplementation(() => Promise.resolve(mockResponse));
 
-    const result = await generateDiscordLink(dummyInviteBody, guildEnv);
+    const result = await generateDiscordLink(dummyInviteBody, mockEnv);
     expect(result).toEqual(response.INTERNAL_SERVER_ERROR);
     expect(global.fetch).toHaveBeenCalledWith(
       `https://discord.com/api/v10/channels/${dummyInviteBody.channelId}/invites`,
@@ -44,7 +45,7 @@ describe("generate invite link", () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bot ${guildEnv.DISCORD_TOKEN}`,
+          Authorization: `Bot ${mockEnv.DISCORD_TOKEN}`,
         },
         body: JSON.stringify({
           max_uses: INVITE_OPTIONS.MAX_USE,
@@ -62,7 +63,7 @@ describe("generate invite link", () => {
         Promise.resolve(new JSONResponse(mockResponse))
       );
 
-    const result = await generateDiscordLink(dummyInviteBody, guildEnv);
+    const result = await generateDiscordLink(dummyInviteBody, mockEnv);
     expect(result).toEqual({ data: {}, message: response.INVITED_CREATED });
     expect(global.fetch).toHaveBeenCalledWith(
       `https://discord.com/api/v10/channels/${dummyInviteBody.channelId}/invites`,
@@ -70,7 +71,7 @@ describe("generate invite link", () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bot ${guildEnv.DISCORD_TOKEN}`,
+          Authorization: `Bot ${mockEnv.DISCORD_TOKEN}`,
         },
         body: JSON.stringify({
           max_uses: INVITE_OPTIONS.MAX_USE,
