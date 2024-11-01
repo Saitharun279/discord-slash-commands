@@ -4,6 +4,7 @@ import JSONResponse from "../../../src/utils/JsonResponse";
 import { groupInvite } from "../../../src/controllers/groupInvite";
 import { group, invalidGroup } from "../../fixtures/groups";
 import { discordTextResponse } from "../../../src/utils/discordResponse";
+import { mockEnv } from "../mockEnv";
 
 describe("Test /group-invite command", () => {
   afterEach(() => {
@@ -16,7 +17,7 @@ describe("Test /group-invite command", () => {
       .spyOn(DiscordGroups, "fetchDiscordGroupById")
       .mockImplementation(() => Promise.resolve(group));
 
-    const response = await groupInvite("1", group.id, environment[0]);
+    const response = await groupInvite("1", group.id, mockEnv);
 
     expect(response).toBeInstanceOf(JSONResponse);
   });
@@ -30,7 +31,7 @@ describe("Test /group-invite command", () => {
       `<@&${invalidGroup.id}> is not a valid group.`
     );
 
-    const response = await groupInvite("1", invalidGroup.id, environment[0]);
+    const response = await groupInvite("1", invalidGroup.id, mockEnv);
 
     expect(await response.json()).toEqual(await expectedResponse.json());
   });
