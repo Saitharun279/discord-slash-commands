@@ -7,7 +7,6 @@ import { Role } from "../../../src/typeDefinitions/role.types";
 import JSONResponse from "../../../src/utils/JsonResponse";
 import {
   generateDummyRequestObject,
-  guildEnv,
   memberGroupRoleList,
   memberGroupRoleResponseList,
   rolesMock,
@@ -15,6 +14,7 @@ import {
 import * as responseConstants from "../../../src/constants/responses";
 import * as guildRoleUtils from "../../../src/utils/guildRole";
 import { GROUP_ROLE_ADD } from "../../../src/constants/requestsActions";
+import { mockEnv } from "../mockEnv";
 
 jest.mock("../../../src/utils/verifyAuthToken", () => ({
   verifyNodejsBackendAuthToken: jest.fn().mockReturnValue(true),
@@ -27,7 +27,7 @@ const getGuildRoleByNameSpy = jest.spyOn(guildRoleUtils, "getGuildRoleByName");
 describe("get roles", () => {
   it("should return a instance of JSONResponse", async () => {
     const mockRequest = generateDummyRequestObject({ url: "/roles" });
-    const response = await getGuildRolesHandler(mockRequest, guildEnv);
+    const response = await getGuildRolesHandler(mockRequest, mockEnv);
     expect(response).toBeInstanceOf(JSONResponse);
   });
 
@@ -35,7 +35,7 @@ describe("get roles", () => {
     const mockRequest = generateDummyRequestObject({ url: "/roles" });
     const response: JSONResponse = await getGuildRolesHandler(
       mockRequest,
-      guildEnv
+      mockEnv
     );
     const jsonResponse: { error: string } = await response.json();
     expect(response.status).toBe(401);
@@ -52,7 +52,7 @@ describe("get roles", () => {
     });
     const response: JSONResponse = await getGuildRolesHandler(
       mockRequest,
-      guildEnv
+      mockEnv
     );
     const jsonResponse = await response.json();
     expect(response.status).toBe(500);
@@ -69,7 +69,7 @@ describe("get roles", () => {
     });
     const response: JSONResponse = await getGuildRolesHandler(
       mockRequest,
-      guildEnv
+      mockEnv
     );
     const jsonResponse = await response.json();
     expect(response.status).toBe(500);
@@ -87,7 +87,7 @@ describe("get roles", () => {
 
     const response: JSONResponse = await getGuildRolesHandler(
       mockRequest,
-      guildEnv
+      mockEnv
     );
     const jsonResponse: { roles: Array<Role> } = await response.json();
     expect(response.status).toBe(200);
@@ -104,7 +104,7 @@ describe("get roles", () => {
 
     const response: JSONResponse = await getGuildRolesHandler(
       mockRequest,
-      guildEnv
+      mockEnv
     );
     const jsonResponse: { roles: Array<Role> } = await response.json();
     expect(response.status).toBe(200);
@@ -127,7 +127,7 @@ describe("get role by role name", () => {
       },
       headers: { Authorization: "Bearer testtoken" },
     });
-    const response = await getGuildRoleByRoleNameHandler(mockRequest, guildEnv);
+    const response = await getGuildRoleByRoleNameHandler(mockRequest, mockEnv);
     expect(response).toBeInstanceOf(JSONResponse);
   });
 
@@ -141,7 +141,7 @@ describe("get role by role name", () => {
     });
     const response: JSONResponse = await getGuildRoleByRoleNameHandler(
       mockRequest,
-      guildEnv
+      mockEnv
     );
     const jsonResponse: { error: string } = await response.json();
     expect(response.status).toBe(401);
@@ -158,7 +158,7 @@ describe("get role by role name", () => {
     });
     const response: JSONResponse = await getGuildRoleByRoleNameHandler(
       mockRequest,
-      guildEnv
+      mockEnv
     );
     const jsonResponse: { error: string } = await response.json();
     expect(response.status).toBe(404);
@@ -178,7 +178,7 @@ describe("get role by role name", () => {
 
     const response: JSONResponse = await getGuildRoleByRoleNameHandler(
       mockRequest,
-      guildEnv
+      mockEnv
     );
     const jsonResponse: { error: string } = await response.json();
     expect(response.status).toBe(404);
@@ -200,7 +200,7 @@ describe("get role by role name", () => {
 
     const response: JSONResponse = await getGuildRoleByRoleNameHandler(
       mockRequest,
-      guildEnv
+      mockEnv
     );
     const role: Role = await response.json();
     expect(response.status).toBe(500);
@@ -222,7 +222,7 @@ describe("get role by role name", () => {
 
     const response: JSONResponse = await getGuildRoleByRoleNameHandler(
       mockRequest,
-      guildEnv
+      mockEnv
     );
     const role: Role = await response.json();
     expect(response.status).toBe(500);
@@ -245,7 +245,7 @@ describe("get role by role name", () => {
 
     const response: JSONResponse = await getGuildRoleByRoleNameHandler(
       mockRequest,
-      guildEnv
+      mockEnv
     );
     const role: Role = await response.json();
     expect(response.status).toBe(200);
@@ -276,7 +276,7 @@ describe("getGuildRolesPostHandler", () => {
       json: () => Promise.resolve(memberGroupRoleList),
       query: { action: GROUP_ROLE_ADD.ADD_ROLE },
     });
-    const response = await getGuildRolesPostHandler(mockRequest, guildEnv);
+    const response = await getGuildRolesPostHandler(mockRequest, mockEnv);
     expect(response).toBeInstanceOf(JSONResponse);
     const responseBody = await response.json();
     expect(responseBody).toEqual(memberGroupRoleResponseList);
@@ -291,7 +291,7 @@ describe("getGuildRolesPostHandler", () => {
     });
     const response: JSONResponse = await getGuildRolesPostHandler(
       mockRequest,
-      guildEnv
+      mockEnv
     );
     const jsonResponse: { error: string } = await response.json();
     expect(jsonResponse).toEqual(responseConstants.BAD_SIGNATURE);
@@ -307,7 +307,7 @@ describe("getGuildRolesPostHandler", () => {
     });
     const response: JSONResponse = await getGuildRolesPostHandler(
       mockRequest,
-      guildEnv
+      mockEnv
     );
     const jsonResponse: { error: string } = await response.json();
     expect(jsonResponse).toEqual(responseConstants.BAD_SIGNATURE);
@@ -324,7 +324,7 @@ describe("getGuildRolesPostHandler", () => {
     });
     const response: JSONResponse = await getGuildRolesPostHandler(
       mockRequest,
-      guildEnv
+      mockEnv
     );
     const jsonResponse: { error: string } = await response.json();
     expect(jsonResponse).toEqual(responseConstants.BAD_SIGNATURE);
@@ -341,7 +341,7 @@ describe("getGuildRolesPostHandler", () => {
     });
     const response: JSONResponse = await getGuildRolesPostHandler(
       mockRequest,
-      guildEnv
+      mockEnv
     );
     const jsonResponse: { error: string } = await response.json();
     expect(jsonResponse).toEqual(responseConstants.INTERNAL_SERVER_ERROR);
