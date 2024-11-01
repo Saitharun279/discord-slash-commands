@@ -11,11 +11,12 @@ import {
 import {
   dummyAddRoleBody,
   dummyCreateBody,
-  guildEnv,
   mockMessageResponse,
   rolesMock,
 } from "../../fixtures/fixture";
 import { DiscordMessageResponse } from "../../../src/typeDefinitions/discordMessage.types";
+import { mockEnv } from "../mockEnv";
+
 
 describe("createGuildRole", () => {
   it("should pass the reason to discord as a X-Audit-Log-Reason header if provided", async () => {
@@ -25,17 +26,17 @@ describe("createGuildRole", () => {
 
     await createGuildRole(
       dummyCreateBody,
-      guildEnv,
+      mockEnv,
       "This is reason for this action"
     );
 
     expect(global.fetch).toHaveBeenCalledWith(
-      `https://discord.com/api/v10/guilds/${guildEnv.DISCORD_GUILD_ID}/roles`,
+      `https://discord.com/api/v10/guilds/${mockEnv.DISCORD_GUILD_ID}/roles`,
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bot ${guildEnv.DISCORD_TOKEN}`,
+          Authorization: `Bot ${mockEnv.DISCORD_TOKEN}`,
           "X-Audit-Log-Reason": "This is reason for this action",
         },
         body: JSON.stringify({
@@ -53,16 +54,16 @@ describe("createGuildRole", () => {
         Promise.resolve(new JSONResponse(mockResponse))
       );
 
-    const result = await createGuildRole(dummyCreateBody, guildEnv);
+    const result = await createGuildRole(dummyCreateBody, mockEnv);
 
     expect(result).toEqual(response.INTERNAL_SERVER_ERROR);
     expect(global.fetch).toHaveBeenCalledWith(
-      `https://discord.com/api/v10/guilds/${guildEnv.DISCORD_GUILD_ID}/roles`,
+      `https://discord.com/api/v10/guilds/${mockEnv.DISCORD_GUILD_ID}/roles`,
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bot ${guildEnv.DISCORD_TOKEN}`,
+          Authorization: `Bot ${mockEnv.DISCORD_TOKEN}`,
         },
         body: JSON.stringify({
           ...dummyCreateBody,
@@ -80,16 +81,16 @@ describe("createGuildRole", () => {
         Promise.resolve(new JSONResponse(mockResponse))
       );
 
-    const result = await createGuildRole(dummyCreateBody, guildEnv);
+    const result = await createGuildRole(dummyCreateBody, mockEnv);
 
     expect(result).toEqual(mockResponse);
     expect(global.fetch).toHaveBeenCalledWith(
-      `https://discord.com/api/v10/guilds/${guildEnv.DISCORD_GUILD_ID}/roles`,
+      `https://discord.com/api/v10/guilds/${mockEnv.DISCORD_GUILD_ID}/roles`,
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bot ${guildEnv.DISCORD_TOKEN}`,
+          Authorization: `Bot ${mockEnv.DISCORD_TOKEN}`,
         },
         body: JSON.stringify({
           ...dummyCreateBody,
@@ -113,18 +114,18 @@ describe("addGroupRole", () => {
 
     const result = await addGroupRole(
       dummyAddRoleBody,
-      guildEnv,
+      mockEnv,
       "This is a reason"
     );
 
     expect(result).toEqual({ message: "Role added successfully" });
     expect(global.fetch).toHaveBeenCalledWith(
-      `https://discord.com/api/v10/guilds/${guildEnv.DISCORD_GUILD_ID}/members/${dummyAddRoleBody.userid}/roles/${dummyAddRoleBody.roleid}`,
+      `https://discord.com/api/v10/guilds/${mockEnv.DISCORD_GUILD_ID}/members/${dummyAddRoleBody.userid}/roles/${dummyAddRoleBody.roleid}`,
       {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bot ${guildEnv.DISCORD_TOKEN}`,
+          Authorization: `Bot ${mockEnv.DISCORD_TOKEN}`,
           "X-Audit-Log-Reason": "This is a reason",
         },
       }
@@ -140,16 +141,16 @@ describe("addGroupRole", () => {
         Promise.resolve(new JSONResponse(mockResponse))
       );
 
-    const result = await addGroupRole(dummyAddRoleBody, guildEnv);
+    const result = await addGroupRole(dummyAddRoleBody, mockEnv);
 
     expect(result).toEqual({ message: "Role added successfully" });
     expect(global.fetch).toHaveBeenCalledWith(
-      `https://discord.com/api/v10/guilds/${guildEnv.DISCORD_GUILD_ID}/members/${dummyAddRoleBody.userid}/roles/${dummyAddRoleBody.roleid}`,
+      `https://discord.com/api/v10/guilds/${mockEnv.DISCORD_GUILD_ID}/members/${dummyAddRoleBody.userid}/roles/${dummyAddRoleBody.roleid}`,
       {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bot ${guildEnv.DISCORD_TOKEN}`,
+          Authorization: `Bot ${mockEnv.DISCORD_TOKEN}`,
         },
       }
     );
@@ -166,14 +167,14 @@ describe("removeGuildRole", () => {
       .mockImplementation(() =>
         Promise.resolve(new JSONResponse(mockResponse))
       );
-    const result = await removeGuildRole(dummyAddRoleBody, guildEnv);
+    const result = await removeGuildRole(dummyAddRoleBody, mockEnv);
     expect(global.fetch).toHaveBeenCalledWith(
-      `https://discord.com/api/v10/guilds/${guildEnv.DISCORD_GUILD_ID}/members/${dummyAddRoleBody.userid}/roles/${dummyAddRoleBody.roleid}`,
+      `https://discord.com/api/v10/guilds/${mockEnv.DISCORD_GUILD_ID}/members/${dummyAddRoleBody.userid}/roles/${dummyAddRoleBody.roleid}`,
       {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bot ${guildEnv.DISCORD_TOKEN}`,
+          Authorization: `Bot ${mockEnv.DISCORD_TOKEN}`,
         },
       }
     );
@@ -196,16 +197,16 @@ describe("removeGuildRole", () => {
       );
     const result = await removeGuildRole(
       dummyAddRoleBody,
-      guildEnv,
+      mockEnv,
       "this is reason"
     );
     expect(global.fetch).toHaveBeenCalledWith(
-      `https://discord.com/api/v10/guilds/${guildEnv.DISCORD_GUILD_ID}/members/${dummyAddRoleBody.userid}/roles/${dummyAddRoleBody.roleid}`,
+      `https://discord.com/api/v10/guilds/${mockEnv.DISCORD_GUILD_ID}/members/${dummyAddRoleBody.userid}/roles/${dummyAddRoleBody.roleid}`,
       {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bot ${guildEnv.DISCORD_TOKEN}`,
+          Authorization: `Bot ${mockEnv.DISCORD_TOKEN}`,
           "X-Audit-Log-Reason": "this is reason",
         },
       }
@@ -220,7 +221,7 @@ describe("removeGuildRole", () => {
   });
   test("Should return internal error response on api failure", async () => {
     jest.spyOn(global, "fetch").mockRejectedValue("Oops some error");
-    const result = await removeGuildRole(dummyAddRoleBody, guildEnv);
+    const result = await removeGuildRole(dummyAddRoleBody, mockEnv);
     expect(result).toEqual(response.INTERNAL_SERVER_ERROR);
   });
 });
@@ -233,7 +234,7 @@ describe("getGuildRoles", () => {
         Promise.resolve(new JSONResponse({}, { status: 500 }))
       );
 
-    await expect(getGuildRoles(guildEnv)).rejects.toThrow(
+    await expect(getGuildRoles(mockEnv)).rejects.toThrow(
       response.ROLE_FETCH_FAILED
     );
   });
@@ -245,7 +246,7 @@ describe("getGuildRoles", () => {
         Promise.reject(new JSONResponse({}, { status: 500 }))
       );
 
-    await expect(getGuildRoles(guildEnv)).rejects.toThrow(
+    await expect(getGuildRoles(mockEnv)).rejects.toThrow(
       response.ROLE_FETCH_FAILED
     );
   });
@@ -256,7 +257,7 @@ describe("getGuildRoles", () => {
       .mockImplementationOnce(async () =>
         Promise.resolve(new JSONResponse(rolesMock))
       );
-    const roles = await getGuildRoles(guildEnv);
+    const roles = await getGuildRoles(mockEnv);
     const expectedRoles = rolesMock.map(({ id, name }) => ({
       id,
       name,
@@ -272,7 +273,7 @@ describe("getGuildRolesByName", () => {
       .mockImplementationOnce(async () =>
         Promise.resolve(new JSONResponse({}, { status: 500 }))
       );
-    await expect(getGuildRoles(guildEnv)).rejects.toThrow(
+    await expect(getGuildRoles(mockEnv)).rejects.toThrow(
       response.ROLE_FETCH_FAILED
     );
   });
@@ -283,7 +284,7 @@ describe("getGuildRolesByName", () => {
       .mockImplementationOnce(async () =>
         Promise.reject(new JSONResponse({}, { status: 500 }))
       );
-    await expect(getGuildRoles(guildEnv)).rejects.toThrow(
+    await expect(getGuildRoles(mockEnv)).rejects.toThrow(
       response.ROLE_FETCH_FAILED
     );
   });
@@ -294,7 +295,7 @@ describe("getGuildRolesByName", () => {
       .mockImplementationOnce(async () =>
         Promise.resolve(new JSONResponse(rolesMock))
       );
-    const role = await getGuildRoleByName("@everyone", guildEnv);
+    const role = await getGuildRoleByName("@everyone", mockEnv);
     const expectedRoles = {
       id: "1234567889",
       name: "@everyone",
@@ -308,7 +309,7 @@ describe("getGuildRolesByName", () => {
       .mockImplementationOnce(async () =>
         Promise.resolve(new JSONResponse(rolesMock))
       );
-    const role = await getGuildRoleByName("everyone", guildEnv);
+    const role = await getGuildRoleByName("everyone", mockEnv);
     expect(role).toBeUndefined();
   });
 });
@@ -329,7 +330,7 @@ describe("mentionEachUserInMessage", () => {
     const message = "Test message";
     const userIds = ["user1", "user2", "user3"];
     const channelId = 123;
-    const env = { DISCORD_TOKEN: "your_token_here" };
+    const env = mockEnv;
 
     await mentionEachUserInMessage({ message, userIds, channelId, env });
     expect(fetch).toHaveBeenCalledTimes(3);
@@ -347,7 +348,7 @@ describe("mentionEachUserInMessage", () => {
     const message = "Test message";
     const userIds = ["user1", "user2", "user3"];
     const channelId = 123;
-    const env = { DISCORD_TOKEN: "your_token_here" };
+    const env = mockEnv;
 
     await mentionEachUserInMessage({ message, userIds, channelId, env });
     expect(fetch).toHaveBeenCalledTimes(4); // should send a message of failed api calls at the end
