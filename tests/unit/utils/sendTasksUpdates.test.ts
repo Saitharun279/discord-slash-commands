@@ -1,9 +1,9 @@
 import config from "../../../config/config";
 import JSONResponse from "../../../src/utils/JsonResponse";
 import { sendTaskUpdate } from "../../../src/utils/sendTaskUpdates";
+import { mockEnv } from "../mockEnv";
 
 describe("sendTaskUpdate function", () => {
-  const mockEnv = { DISCORD_TOKEN: "mockToken" };
   const completed = "Task completed successfully";
   const planned = "Plan for the next phase";
   const blockers = "No blockers";
