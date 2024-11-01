@@ -1,13 +1,10 @@
 import { DISCORD_BASE_URL } from "../../../src/constants/urls";
 import { getGuildMemberDetails } from "../../../src/utils/getGuildMemberDetails";
 import { dummyGuildMemberDetails } from "../../fixtures/fixture";
+import { mockEnv } from "../mockEnv";
 
 describe("getGuildMemberDetails", () => {
-  const mockEnv = {
-    BOT_PUBLIC_KEY: "xyz",
-    DISCORD_GUILD_ID: "123",
-    DISCORD_TOKEN: "abc",
-  };
+
   const mockUserId = "12345678";
   const GET_GUILD_MEMBER_URL = `${DISCORD_BASE_URL}/guilds/${mockEnv.DISCORD_GUILD_ID}/members/${mockUserId}`;
   beforeEach(() => {

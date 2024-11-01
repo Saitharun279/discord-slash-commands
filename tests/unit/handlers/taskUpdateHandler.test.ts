@@ -3,6 +3,7 @@ import JSONResponse from "../../../src/utils/JsonResponse";
 import * as response from "../../../src/constants/responses";
 import { sendTaskUpdate } from "../../../src/utils/sendTaskUpdates";
 import { generateDummyRequestObject } from "../../fixtures/fixture";
+import { mockEnv } from "../mockEnv";
 
 jest.mock("../../../src/utils/verifyAuthToken", () => ({
   verifyNodejsBackendAuthToken: jest.fn().mockResolvedValue(true),
@@ -11,7 +12,6 @@ jest.mock("../../../src/utils/sendTaskUpdates", () => ({
   sendTaskUpdate: jest.fn().mockResolvedValue(undefined),
 }));
 describe("sendTaskUpdatesHandler", () => {
-  const mockEnv = { DISCORD_TOKEN: "mockToken" };
   const mockData = {
     content: {
       completed: "Wrote test cases",

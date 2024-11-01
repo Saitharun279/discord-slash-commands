@@ -1,13 +1,10 @@
 import { DISCORD_BASE_URL } from "../../../src/constants/urls";
 import JSONResponse from "../../../src/utils/JsonResponse";
 import { getMembersInServer } from "../../../src/utils/getMembersInServer";
+import { mockEnv } from "../mockEnv";
 
 describe("getMembersInServer", () => {
-  const mockEnv = {
-    BOT_PUBLIC_KEY: "xyz",
-    DISCORD_GUILD_ID: "123",
-    DISCORD_TOKEN: "abc",
-  };
+
   test("returns JSON response with members on success", async () => {
     const expectedResponse = [{ id: "1234", name: "John Doe" }];
 

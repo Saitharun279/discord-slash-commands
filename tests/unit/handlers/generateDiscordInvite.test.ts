@@ -6,9 +6,10 @@ jest.mock("../../../src/utils/generateDiscordInvite", () => ({
 }));
 import { generateInviteLink } from "../../../src/controllers/generateDiscordInvite";
 import JSONResponse from "../../../src/utils/JsonResponse";
-import { generateDummyRequestObject, guildEnv } from "../../fixtures/fixture";
+import { generateDummyRequestObject } from "../../fixtures/fixture";
 import * as responseConstants from "../../../src/constants/responses";
 import { inviteResponseType } from "../../../src/typeDefinitions/discordLink.types";
+import { mockEnv } from "../mockEnv";
 
 jest.mock("../../../src/utils/verifyAuthToken", () => ({
   verifyNodejsBackendAuthToken: jest.fn().mockReturnValue(true),
@@ -31,14 +32,14 @@ describe("generate discord link", () => {
 
     const response: JSONResponse = await generateInviteLink(
       mockRequest,
-      guildEnv
+      mockEnv
     );
 
     await response.json();
     const body = await mockRequest.json();
     expect(generateDiscordLink).toHaveBeenLastCalledWith(
       body,
-      guildEnv,
+      mockEnv,
       "This is a reason"
     );
   });
@@ -49,7 +50,7 @@ describe("generate discord link", () => {
 
     const response: JSONResponse = await generateInviteLink(
       mockRequest,
-      guildEnv
+      mockEnv
     );
 
     const jsonResponse: { error: string } = await response.json();
@@ -71,7 +72,7 @@ describe("generate discord link", () => {
 
     const response: JSONResponse = await generateInviteLink(
       mockRequest,
-      guildEnv
+      mockEnv
     );
 
     const jsonResponse: inviteResponseType = await response.json();
