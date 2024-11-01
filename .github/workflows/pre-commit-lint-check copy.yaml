@@ -1,6 +1,6 @@
 name: pre-merge-checks
 on:
-  pull_request:
+  push:
     branches: 
       test/issue#257
 jobs:
