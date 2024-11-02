@@ -59,6 +59,9 @@ export function loadEnv(env: env, fromWorkerEnv: boolean): env {
     IDENTITY_SERVICE_PUBLIC_KEY: fromWorkerEnv
       ? env.IDENTITY_SERVICE_PUBLIC_KEY
       : process.env.IDENTITY_SERVICE_PUBLIC_KEY || "",
+      TEST_ENV_VAR_257: fromWorkerEnv
+      ? env.TEST_ENV_VAR_257
+      : process.env.TEST_ENV_VAR_257 || "",
   };
   return Env;
 }
