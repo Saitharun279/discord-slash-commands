@@ -23,6 +23,7 @@ import { sendProfileBlockedMessage } from "./controllers/profileHandler";
 import { sendTaskUpdatesHandler } from "./controllers/taskUpdatesHandler";
 
 import config from "./../config/config";
+import { loadEnv } from "../config/envVarCheck";
 
 const router = Router();
 
@@ -107,10 +108,10 @@ export default {
         return new JSONResponse(response.BAD_SIGNATURE, { status: 401 });
       }
     }
-    return router.handle(request, env, ctx);
+    return router.handle(request, loadEnv(env,true), ctx);
   },
 
   async scheduled(req: Request, env: env, ctx: ExecutionContext) {
-    ctx.waitUntil(send(env));
+    ctx.waitUntil(send(loadEnv(env,true)));
   },
 };
