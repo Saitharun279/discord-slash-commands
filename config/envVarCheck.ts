@@ -32,7 +32,7 @@ validateEnv();
  * and are in the correct format else throw an error
  * ---
  */
-export default function validateEnv (){
+export function validateEnv (){
     const envLoadedFromProcess: env = loadEnv({}, false);
     console.log(envLoadedFromProcess);
     const missingEnvVars = Object.keys(envLoadedFromProcess).filter((key) => envLoadedFromProcess[key] == '');
