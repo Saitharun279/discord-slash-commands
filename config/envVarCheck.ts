@@ -1,4 +1,5 @@
 import { env } from "../src/typeDefinitions/default.types";
+import { config } from "dotenv";
 
 export function loadEnv (
   env: env,
@@ -21,6 +22,7 @@ export function loadEnv (
 }
 
 
+config();
 validateEnv();
 
 
