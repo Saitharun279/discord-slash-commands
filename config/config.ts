@@ -26,6 +26,9 @@ export function loadEnv (
   fromWorkerEnv: boolean
 ): env {
   const Env:env = {
+    //if `fromWokerEnv` is true, then load from the `env` passed as argument to the function,
+    // else if `fromWokerEnv` is false, load from process.env 
+    //(or set to '' if value from process.env is undefined) to avoid Error TS2322
     CURRENT_ENVIRONMENT: fromWorkerEnv ? env.CURRENT_ENVIRONMENT : process.env.CURRENT_ENVIRONMENT || '',
     DISCORD_APPLICATION_ID: fromWorkerEnv ? env.DISCORD_APPLICATION_ID : process.env.DISCORD_APPLICATION_ID || '',
     DISCORD_GUILD_ID: fromWorkerEnv ? env.DISCORD_GUILD_ID : process.env.DISCORD_GUILD_ID || '',
