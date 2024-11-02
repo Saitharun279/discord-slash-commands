@@ -23,8 +23,7 @@ import { sendProfileBlockedMessage } from "./controllers/profileHandler";
 import { sendTaskUpdatesHandler } from "./controllers/taskUpdatesHandler";
 
 import config from "./../config/config";
-import { loadEnv } from "../config/envVarCheck";
-
+import { loadEnv } from "./../config/config";
 const router = Router();
 
 router.get("/", async () => {
