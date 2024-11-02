@@ -10,3 +10,8 @@ jobs:
       - run: npm install
       - run: npm run lint-check
       - run: npm run format-check
+      - run: cat src/index.ts
+      - run: cat config/envVarCheck.ts
+      - run: npm run format-fix
+      - run: cat src/index.ts
+      - run: cat config/envVarCheck.ts
