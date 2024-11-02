@@ -97,7 +97,7 @@ export default {
   async fetch(
     request: Request,
     env: env,
-    ctx: ExecutionContext,
+    ctx: ExecutionContext
   ): Promise<Response> {
     const apiUrls = ["/invite", "/roles", "/profile/blocked", "/task/update"];
     const url = new URL(request.url);
