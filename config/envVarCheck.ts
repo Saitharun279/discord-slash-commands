@@ -33,9 +33,9 @@ validateEnv();
  * ---
  */
 export default function validateEnv (){
-    const env: env = loadEnv({}, false);
-    console.log(env);
-    const missingEnvVars = Object.keys(env).filter((key) => !env[key] && env[key] != '');
+    const envLoadedFromProcess: env = loadEnv({}, false);
+    console.log(envLoadedFromProcess);
+    const missingEnvVars = Object.keys(envLoadedFromProcess).filter((key) => envLoadedFromProcess[key] == '');
 
     // Logging missing environment variables and exit if any are missing
     if (missingEnvVars.length > 0) {
