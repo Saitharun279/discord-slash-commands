@@ -12,6 +12,7 @@ jobs:
       - run: npm run format-check
   Lint-Fix:
     needs: [Lint-Check]
+    runs-on: ubuntu-latest
     steps:
       - run: cat src/index.ts
       - run: cat config/envVarCheck.ts
