@@ -108,6 +108,7 @@ export default {
       }
     }
     const envLoadedFromWorker: env = loadEnv(env, true);
+    console.log(envLoadedFromWorker.DISCORD_APPLICATION_ID);
     return router.handle(request, envLoadedFromWorker, ctx);
   },
 
