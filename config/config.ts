@@ -58,10 +58,7 @@ export function loadEnv(env: env, fromWorkerEnv: boolean): env {
       : process.env.CRON_JOBS_PUBLIC_KEY || "",
     IDENTITY_SERVICE_PUBLIC_KEY: fromWorkerEnv
       ? env.IDENTITY_SERVICE_PUBLIC_KEY
-      : process.env.IDENTITY_SERVICE_PUBLIC_KEY || "",
-      TEST_ENV_VAR_257: fromWorkerEnv
-      ? env.TEST_ENV_VAR_257
-      : process.env.TEST_ENV_VAR_257 || "",
+      : process.env.IDENTITY_SERVICE_PUBLIC_KEY || ""
   };
   return Env;
 }
