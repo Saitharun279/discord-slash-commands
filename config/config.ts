@@ -22,6 +22,7 @@ import {
 import { config as configFromDotEnv } from "dotenv";
 
 export function loadEnv(env: env, fromWorkerEnv: boolean): env {
+  console.log(env);
   const Env: env = {
     //if `fromWokerEnv` is true, then load from the `env` passed as argument to the function,
     // else if `fromWokerEnv` is false, load from process.env

@@ -108,7 +108,9 @@ export default {
       }
     }
     const envLoadedFromWorker: env = loadEnv(env, true);
-    console.log(envLoadedFromWorker.DISCORD_APPLICATION_ID);
+    console.log("app id: " + envLoadedFromWorker.DISCORD_APPLICATION_ID);
+    console.log(envLoadedFromWorker.TEST_ENV_VAR == null);
+    console.log("guild id: "+envLoadedFromWorker.DISCORD_GUILD_ID);
     return router.handle(request, envLoadedFromWorker, ctx);
   },
 
