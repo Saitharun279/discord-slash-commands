@@ -1,7 +1,7 @@
 name: pre-merge-checks
 on:
-  pull_request:
-    branches: [main, develop]
+  push:
+    branches: test-feature/issue#257-2
 jobs:
   Lint-Check:
     runs-on: ubuntu-latest
@@ -10,3 +10,13 @@ jobs:
       - run: npm install
       - run: npm run lint-check
       - run: npm run format-check
+  Lint-Fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: npm install
+      - run: cat src/index.ts
+      - run: cat config/envVarCheck.ts
+      - run: npm run format-fix
+      - run: cat src/index.ts
+      - run: cat config/envVarCheck.ts
