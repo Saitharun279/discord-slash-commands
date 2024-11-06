@@ -1,7 +1,7 @@
 name: Register and deploy Slash Commands
 on:
   push:
-    branches: develop
+    branches: test-feature/issue#257-2
 jobs:
   Environment-Variables-Check:
     runs-on: ubuntu-latest
