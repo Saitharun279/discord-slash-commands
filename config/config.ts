@@ -57,6 +57,7 @@ export function loadEnv(env: env, fromWorkerEnv: boolean): env {
       ? env.IDENTITY_SERVICE_PUBLIC_KEY
       : process.env.IDENTITY_SERVICE_PUBLIC_KEY || "",
   };
+  console.log(Env.DISCORD_PUBLIC_KEY);
   return Env;
 }
 
